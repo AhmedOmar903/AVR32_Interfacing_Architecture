@@ -30,10 +30,10 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-ADC_INT.lss \
+OSILISCOPE.lss \
 
 FLASH_IMAGE += \
-ADC_INT.hex \
+OSILISCOPE.hex \
 
 SIZEDUMMY += \
 sizedummy \
@@ -43,43 +43,43 @@ avrdudedummy \
 
 
 # All Target
-all: ADC_INT.elf secondary-outputs
+all: OSILISCOPE.elf secondary-outputs
 
 # Tool invocations
-ADC_INT.elf: $(OBJS) $(USER_OBJS)
+OSILISCOPE.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,ADC_INT.map -mmcu=atmega32 -o "ADC_INT.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,OSILISCOPE.map -mmcu=atmega32 -o "OSILISCOPE.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-ADC_INT.lss: ADC_INT.elf
+OSILISCOPE.lss: OSILISCOPE.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S ADC_INT.elf  >"ADC_INT.lss"
+	-avr-objdump -h -S OSILISCOPE.elf  >"OSILISCOPE.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ADC_INT.hex: ADC_INT.elf
+OSILISCOPE.hex: OSILISCOPE.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex ADC_INT.elf  "ADC_INT.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex OSILISCOPE.elf  "OSILISCOPE.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: ADC_INT.elf
+sizedummy: OSILISCOPE.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 ADC_INT.elf
+	-avr-size --format=avr --mcu=atmega32 OSILISCOPE.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
-avrdudedummy: ADC_INT.elf
+avrdudedummy: OSILISCOPE.elf
 	@echo 'Invoking: AVRDude'
-	D:\2-imt sdk\SDK\IMT_SDK_Win_64\WinAVR\bin\avrdude -pm32 -cusbasp -Uflash:w:ADC_INT.hex:a
+	D:\ARM_EMBEDED\IMT_ARM_Course\02- Tools\03- IMT SDK\IMT_SDK_Win_64\WinAVR\bin\avrdude -pm32 -cusbasp -Uflash:w:OSILISCOPE.hex:a
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(AVRDUDEDUMMY)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) ADC_INT.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(AVRDUDEDUMMY)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) OSILISCOPE.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY) $(AVRDUDEDUMMY)

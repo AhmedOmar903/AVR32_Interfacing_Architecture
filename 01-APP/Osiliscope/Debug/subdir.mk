@@ -8,6 +8,7 @@ C_SRCS += \
 ../DIO_program.c \
 ../GIE_program.c \
 ../LCD_program.c \
+../OSILLOSCOPE_program.c \
 ../TIMER1_program.c \
 ../TIMER_program.c \
 ../main.c 
@@ -17,6 +18,7 @@ OBJS += \
 ./DIO_program.o \
 ./GIE_program.o \
 ./LCD_program.o \
+./OSILLOSCOPE_program.o \
 ./TIMER1_program.o \
 ./TIMER_program.o \
 ./main.o 
@@ -26,6 +28,7 @@ C_DEPS += \
 ./DIO_program.d \
 ./GIE_program.d \
 ./LCD_program.d \
+./OSILLOSCOPE_program.d \
 ./TIMER1_program.d \
 ./TIMER_program.d \
 ./main.d 

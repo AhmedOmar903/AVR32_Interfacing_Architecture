@@ -1,6 +1,7 @@
+
 #include "STD_TYPES.h"
-#include "DIO_register.h"
 #include "BIT_MATH.h"
+#include "DIO_register.h"
 
 /*
 loc_u8port=port name 
@@ -81,4 +82,13 @@ u8 DIO_u8GetPinValue(u8 loc_u8port,u8 loc_u8pin){
 		case 3:VALUE=GET_BIT(PIND,loc_u8pin); break;
 	 }
 	 return VALUE;
+}
+
+void DIO_VidTogBit(u8 loc_u8port,u8 LOC_u8BitNum){
+	switch(loc_u8port){
+		case 0: TOG_BIT(PORTA,LOC_u8BitNum); break;
+		case 1: TOG_BIT(PORTB,LOC_u8BitNum); break;
+		case 2: TOG_BIT(PORTC,LOC_u8BitNum); break;
+		case 3: TOG_BIT(PORTD,LOC_u8BitNum); break;
+	}	
 }
